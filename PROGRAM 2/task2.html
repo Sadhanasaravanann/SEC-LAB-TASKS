@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Number Guess</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #21867a;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Guess the Number</h2>
+    <input type="number" id="userInput" placeholder="Enter a number" />
+    <button onclick="compareNumber()">Check</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const predefinedNumber = 50;
+
+    function compareNumber() {
+      const userValue = parseInt(document.getElementById("userInput").value);
+      const result = document.getElementById("result");
+
+      if (isNaN(userValue)) {
+        result.textContent = "Please enter a valid number.";
+        result.style.color = "#e63946";
+        return;
+      }
+
+      if (userValue < predefinedNumber) {
+        result.textContent = "Too Low";
+        result.style.color = "#f4a261";
+      } else if (userValue > predefinedNumber) {
+        result.textContent = "Too High";
+        result.style.color = "#e76f51";
+      } else {
+        result.textContent = "Correct!";
+        result.style.color = "#2a9d8f";
+      }
+    }
+  </script>
+
+</body>
+</html>

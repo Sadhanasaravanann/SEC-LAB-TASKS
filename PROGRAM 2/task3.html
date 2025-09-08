@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Number (Reversed)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #eceff1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game-box {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #37474f;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #b0bec5;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #039be5;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0288d1;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #455a64;
+    }
+
+    .attempts {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #78909c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="game-box">
+    <h1>Guess the Number</h1>
+    <input type="number" id="userGuess" placeholder="Enter your guess" />
+    <button onclick="submitGuess()">Guess</button>
+    <div id="message"></div>
+    <div class="attempts" id="attemptsInfo"></div>
+  </div>
+
+  <script>
+    const correctNumber = 75;
+    let attempts = 0;
+
+    function submitGuess() {
+      const guessInput = document.getElementById("userGuess");
+      const message = document.getElementById("message");
+      const attemptsInfo = document.getElementById("attemptsInfo");
+      const guess = parseInt(guessInput.value);
+
+      if (isNaN(guess)) {
+        message.textContent = "Please enter a valid number.";
+        message.style.color = "#d32f2f";
+        return;
+      }
+
+      attempts++;
+
+      
+      if (guess < correctNumber) {
+        message.textContent = `${guess} is Too High!`;
+        message.style.color = "#f57c00";
+      } else if (guess > correctNumber) {
+        message.textContent = `${guess} is Too High!`;
+        message.style.color = "#f57c00";
+      } else {
+        message.textContent = `Correct! 🎉 You guessed it in ${attempts} tries.`;
+        message.style.color = "#388e3c";
+        guessInput.disabled = true;
+      }
+
+      attemptsInfo.textContent = `Attempts: ${attempts}`;
+      guessInput.value = "";
+      guessInput.focus();
+    }
+  </script>
+
+</body>
+</html>
