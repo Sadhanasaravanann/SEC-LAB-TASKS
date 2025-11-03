@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Conditional Statements</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      width: 480px;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 350px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>JavaScript Conditional Statements</h1>
+    <p>Click the button to run conditional examples.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Simple if Statement ===");
+      let number = 10;
+      if (number > 0) {
+        log(`The number ${number} is positive.`);
+      }
+
+      log("\n=== if-else Statement ===");
+      let age = 17;
+      if (age >= 18) {
+        log(`Age ${age}: You are eligible to vote.`);
+      } else {
+        log(`Age ${age}: You are not eligible to vote.`);
+      }
+
+      log("\n=== else-if Ladder (Multiple Conditions) ===");
+      let marks = 75;
+      if (marks >= 90) {
+        log(`Marks ${marks}: Grade A+`);
+      } else if (marks >= 80) {
+        log(`Marks ${marks}: Grade A`);
+      } else if (marks >= 70) {
+        log(`Marks ${marks}: Grade B`);
+      } else if (marks >= 60) {
+        log(`Marks ${marks}: Grade C`);
+      } else {
+        log(`Marks ${marks}: Fail`);
+      }
+
+      log("\n=== switch Statement (Menu Simulation) ===");
+      let day = 3; // try changing this value from 1–7
+      let dayName;
+      switch (day) {
+        case 1:
+          dayName = "Monday";
+          break;
+        case 2:
+          dayName = "Tuesday";
+          break;
+        case 3:
+          dayName = "Wednesday";
+          break;
+        case 4:
+          dayName = "Thursday";
+          break;
+        case 5:
+          dayName = "Friday";
+          break;
+        case 6:
+          dayName = "Saturday";
+          break;
+        case 7:
+          dayName = "Sunday";
+          break;
+        default:
+          dayName = "Invalid day number!";
+      }
+      log(`Day number ${day}: ${dayName}`);
+
+      log("\n=== Edge Case Tests ===");
+      let testNum = 0;
+      if (testNum > 0) {
+        log(`Number ${testNum} is positive`);
+      } else if (testNum < 0) {
+        log(`Number ${testNum} is negative`);
+      } else {
+        log(`Number ${testNum} is zero`);
+      }
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
