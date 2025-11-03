@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Variables Demo</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f8fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 200px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>JavaScript Variables Demo</h1>
+    <button id="runDemo">Run Demo</button>
+    <p>Click the button to see results below.</p>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    // Function to display both in console and on the webpage
+    function display(message, type = "log") {
+      const outputDiv = document.getElementById("output");
+      const p = document.createElement("p");
+
+      if (type === "warn") p.style.color = "orange";
+      if (type === "error") p.style.color = "red";
+      p.textContent = message;
+      outputDiv.appendChild(p);
+
+      console[type](message);
+    }
+
+    function runVariableDemo() {
+      document.getElementById("output").innerHTML = ""; // clear previous output
+      console.clear();
+      display("=== JavaScript Variable Demo ===");
+
+      // Using var
+      var name = "Alice";
+      display("var name: " + name);
+      name = "Bob"; // var can be re-assigned
+      display("var name after change: " + name);
+
+      // Using let
+      let age = 25;
+      display("let age: " + age);
+      age = 30; // let can also be re-assigned
+      display("let age after change: " + age);
+
+      // Using const
+      const country = "USA";
+      display("const country: " + country);
+      display("You cannot reassign a const variable.");
+
+      // Example of block scope difference
+      display("\n=== Block Scope Example ===");
+      if (true) {
+        var city = "New York";
+        let car = "Tesla";
+        display("Inside block - city: " + city);
+        display("Inside block - car: " + car);
+      }
+
+      display("Outside block - city (var): " + city);
+      try {
+        display("Outside block - car (let): " + car);
+      } catch (error) {
+        display("Outside block - car is not accessible (block-scoped).", "warn");
+      }
+
+      display("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runVariableDemo);
+  </script>
+</body>
+</html>

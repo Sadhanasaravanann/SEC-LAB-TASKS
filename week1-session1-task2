@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Data Types & Type Conversion</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 450px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .highlight {
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>JavaScript Data Types & Type Conversion</h1>
+    <button id="runDemo">Run Demo</button>
+    <p>Click the button to explore data types and conversions.</p>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      document.getElementById("output").innerHTML = ""; // Clear old output
+      console.clear();
+      log("=== JavaScript Data Types ===");
+
+      // Number
+      let num = 42;
+      log("Number: " + num + " (type: " + typeof num + ")");
+
+      // String
+      let str = "Hello, world!";
+      log("String: " + str + " (type: " + typeof str + ")");
+
+      // Boolean
+      let isTrue = true;
+      log("Boolean: " + isTrue + " (type: " + typeof isTrue + ")");
+
+      // Null
+      let nothing = null;
+      log("Null: " + nothing + " (type: " + typeof nothing + ")");
+
+      // Undefined
+      let notDefined;
+      log("Undefined: " + notDefined + " (type: " + typeof notDefined + ")");
+
+      // Object
+      let person = { name: "Alice", age: 25 };
+      log("Object: " + JSON.stringify(person) + " (type: " + typeof person + ")");
+
+      // Symbol
+      let uniqueId = Symbol("id");
+      log("Symbol: " + uniqueId.toString() + " (type: " + typeof uniqueId + ")");
+
+      log("\n=== Type Conversion Examples ===");
+
+      // Explicit Conversion
+      let strNumber = "123";
+      let convertedNumber = Number(strNumber);
+      log("Explicit: String '123' → Number: " + convertedNumber + " (type: " + typeof convertedNumber + ")");
+
+      let numToString = String(456);
+      log("Explicit: Number 456 → String: '" + numToString + "' (type: " + typeof numToString + ")");
+
+      // Boolean Conversion
+      let zero = 0;
+      let boolZero = Boolean(zero);
+      log("Number 0 → Boolean: " + boolZero + " (false)");
+
+      let text = "Hello";
+      let boolText = Boolean(text);
+      log("Non-empty string → Boolean: " + boolText + " (true)");
+
+      log("\n=== Implicit Conversion Examples ===");
+
+      log("'5' + 2 → " + ("5" + 2) + " (String concatenation)");
+      log("'10' - 2 → " + ("10" - 2) + " (Implicit number conversion)");
+      log("true + 1 → " + (true + 1) + " (true becomes 1)");
+      log("false + 1 → " + (false + 1) + " (false becomes 0)");
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
