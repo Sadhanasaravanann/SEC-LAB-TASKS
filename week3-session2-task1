@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destructuring, Notation & Iteration</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 750px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #6f42c1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #5936a2;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 500px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Destructuring, Notation & Iteration</h1>
+    <p>Click the button to see examples of destructuring, dot/bracket notation, and iteration.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Array Destructuring ===");
+      const numbers = [10, 20, 30, 40];
+      const [first, second, ...rest] = numbers;
+      log(`First: ${first}, Second: ${second}, Rest: [${rest}]`);
+
+      log("\n=== Object Destructuring ===");
+      const student = {
+        name: "Alice",
+        age: 22,
+        address: { city: "New York", country: "USA" }
+      };
+      const { name, age, address: { city, country } } = student;
+      log(`Name: ${name}, Age: ${age}, City: ${city}, Country: ${country}`);
+
+      log("\n=== Accessing Properties ===");
+      log(`Dot notation: ${student.name}`);
+      log(`Bracket notation: ${student['age']}`);
+
+      log("\n=== Iterating through object using for...in ===");
+      for (let key in student) {
+        log(`Key: ${key}, Value: ${JSON.stringify(student[key])}`);
+      }
+
+      log("\n=== Iterating using Object.keys(), Object.values(), Object.entries() ===");
+      const keys = Object.keys(student);
+      log(`Keys: [${keys}]`);
+
+      const values = Object.values(student);
+      log(`Values: [${values.map(v => JSON.stringify(v))}]`);
+
+      const entries = Object.entries(student);
+      entries.forEach(([key, value]) => {
+        log(`Entry - Key: ${key}, Value: ${JSON.stringify(value)}`);
+      });
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
+

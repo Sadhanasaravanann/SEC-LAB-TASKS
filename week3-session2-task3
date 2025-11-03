@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function Context & Advanced Calls</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 750px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #fd7e14;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #e65c00;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 450px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Function Context & Advanced Calls</h1>
+    <p>Click the button to see examples of call(), apply(), and bind().</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Function Context Example ===");
+
+      const person1 = { name: "Alice" };
+      const person2 = { name: "Bob" };
+
+      function greet(greeting, punctuation) {
+        log(`${greeting}, ${this.name}${punctuation}`);
+      }
+
+      log("\n--- Using call() ---");
+      greet.call(person1, "Hello", "!");
+      greet.call(person2, "Hi", "!!");
+
+      log("\n--- Using apply() ---");
+      greet.apply(person1, ["Good morning", "!!!"]);
+      greet.apply(person2, ["Good evening", "?"]);
+
+      log("\n--- Using bind() ---");
+      const greetAlice = greet.bind(person1, "Hey");
+      greetAlice("!"); 
+
+      const greetBob = greet.bind(person2);
+      greetBob("Hello", "!!");
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>

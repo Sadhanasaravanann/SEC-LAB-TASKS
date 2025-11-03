@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Array Methods</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 700px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 450px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Advanced Array Methods</h1>
+    <p>Click the button to see examples of advanced array operations.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      const numbers = [5, 12, 8, 20, 3];
+      const fruits = ["Apple", "Banana", "Cherry", "Date"];
+      log("Numbers: [" + numbers + "]");
+      log("Fruits: [" + fruits + "]");
+
+      log("\n=== filter() (numbers > 10) ===");
+      const filtered = numbers.filter(num => num > 10);
+      log(`Filtered numbers > 10: [${filtered}]`);
+
+      log("\n=== reduce() ===");
+      const sum = numbers.reduce((acc, num) => acc + num, 0);
+      log(`Sum of numbers: ${sum}`);
+      const product = numbers.reduce((acc, num) => acc * num, 1);
+      log(`Product of numbers: ${product}`);
+      const allFruits = fruits.reduce((acc, f) => acc + ", " + f);
+      log(`Concatenated fruits: ${allFruits}`);
+
+      log("\n=== slice() ===");
+      const part = numbers.slice(1, 4);
+      log(`numbers.slice(1,4): [${part}]`);
+      log(`Original numbers unchanged: [${numbers}]`);
+
+      log("\n=== splice() ===");
+      const numsCopy = [...numbers]; // clone to show changes
+      numsCopy.splice(2, 2, 15, 18); // remove 2 elements at index 2, add 15,18
+      log(`After splice at index 2: [${numsCopy}]`);
+      log(`Original numbers unchanged: [${numbers}]`);
+
+      log("\n=== Spread Operator ===");
+      const cloneNumbers = [...numbers];
+      log(`Cloned numbers: [${cloneNumbers}]`);
+      const mergedArrays = [...numbers, ...[100, 200, 300]];
+      log(`Merged numbers + [100,200,300]: [${mergedArrays}]`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>

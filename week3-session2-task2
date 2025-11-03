@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Data & Parameters</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 750px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 500px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Complex Data & Parameter Handling</h1>
+    <p>Click the button to see examples of arrays of objects, rest parameters, spread operator, and destructured function parameters.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Array of Objects ===");
+      const users = [
+        { id: 1, name: "Alice", age: 22, address: { city: "NY", country: "USA" } },
+        { id: 2, name: "Bob", age: 28, address: { city: "LA", country: "USA" } },
+        { id: 3, name: "Charlie", age: 25, address: { city: "London", country: "UK" } }
+      ];
+
+      log("All users:");
+      users.forEach(u => log(JSON.stringify(u)));
+
+      log("\nAccess nested data (city of 2nd user):");
+      log(users[1].address.city);
+
+      log("\n=== Rest Parameters ===");
+      function sumNumbers(...nums) {
+        const total = nums.reduce((acc, val) => acc + val, 0);
+        log(`Sum of [${nums}] = ${total}`);
+      }
+
+      sumNumbers(10, 20, 30);
+      sumNumbers(5, 15);
+
+      log("\n=== Spread Operator with Arrays ===");
+      const moreUsers = [
+        { id: 4, name: "Diana", age: 30, address: { city: "Paris", country: "France" } }
+      ];
+      const allUsers = [...users, ...moreUsers];
+      log(`Combined users: ${JSON.stringify(allUsers)}`);
+
+      log("\n=== Function Parameter Destructuring ===");
+      function printUser({ name, age, address: { city } }) {
+        log(`User: ${name}, Age: ${age}, City: ${city}`);
+      }
+
+      allUsers.forEach(user => printUser(user));
+
+      log("\n=== Cloning Objects using Spread ===");
+      const clonedUser = { ...users[0], name: "Eve" };
+      log(`Cloned & modified user: ${JSON.stringify(clonedUser)}`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>

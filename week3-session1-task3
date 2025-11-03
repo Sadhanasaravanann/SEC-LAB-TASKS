@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Object Destructuring & Spread</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 700px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #17a2b8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #138496;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 450px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Object Destructuring & Spread</h1>
+    <p>Click the button to see examples of destructuring and spread operator.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Basic Destructuring ===");
+      const student = { name: "Alice", age: 22, course: "CS" };
+      const { name, age, course } = student;
+      log(`Name: ${name}, Age: ${age}, Course: ${course}`);
+
+      log("\n=== Destructuring with Default Values ===");
+      const { city = "Unknown", country = "Unknown" } = student;
+      log(`City: ${city}, Country: ${country}`);
+
+      log("\n=== Nested Object Destructuring ===");
+      const employee = {
+        id: 101,
+        personal: { firstName: "Bob", lastName: "Smith" },
+        role: "Developer"
+      };
+      const {
+        personal: { firstName, lastName },
+        role
+      } = employee;
+      log(`Employee: ${firstName} ${lastName}, Role: ${role}`);
+
+      log("\n=== Spread Operator ===");
+      const clonedStudent = { ...student };
+      log(`Cloned student: ${JSON.stringify(clonedStudent)}`);
+
+      const extraInfo = { city: "New York", country: "USA" };
+      const mergedStudent = { ...student, ...extraInfo };
+      log(`Merged student: ${JSON.stringify(mergedStudent)}`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
