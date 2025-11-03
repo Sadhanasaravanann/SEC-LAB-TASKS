@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Functions Demo</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 500px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 350px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>JavaScript Function Examples</h1>
+    <p>Click the button to run function examples.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    // Helper to display messages on page and console
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    // Function with fixed parameters
+    function addNumbers(a, b) {
+      return a + b;
+    }
+
+    // Function using "arguments" object
+    function multiplyAll() {
+      let product = 1;
+      for (let i = 0; i < arguments.length; i++) {
+        product *= arguments[i];
+      }
+      return product;
+    }
+
+    // Function using rest operator (...args)
+    function sumAll(...numbers) {
+      return numbers.reduce((total, num) => total + num, 0);
+    }
+
+    // Function with no parameters
+    function greet() {
+      log("Hello! Welcome to JavaScript Functions Demo.");
+    }
+
+    // Function calling another function
+    function showSquare(num) {
+      return num * num;
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Function with Fixed Parameters ===");
+      let result1 = addNumbers(5, 10);
+      log(`addNumbers(5, 10) = ${result1}`);
+
+      log("\n=== Function Using 'arguments' Object ===");
+      let result2 = multiplyAll(2, 3, 4);
+      log(`multiplyAll(2, 3, 4) = ${result2}`);
+
+      log("\n=== Function Using Rest Operator (...args) ===");
+      let result3 = sumAll(5, 10, 15, 20);
+      log(`sumAll(5, 10, 15, 20) = ${result3}`);
+
+      log("\n=== Function with No Parameters ===");
+      greet();
+
+      log("\n=== Function Calling Another Function ===");
+      let number = 7;
+      log(`The square of ${number} is ${showSquare(number)}`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>

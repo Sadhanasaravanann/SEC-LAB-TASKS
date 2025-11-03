@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callback Functions & Scopes</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 600px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Callback Functions & Scopes</h1>
+    <p>Click the button to see examples of callbacks and variable scopes.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    
+    function greetUser(name, callback) {
+      log(`Hello, ${name}!`);
+      callback();
+    }
+
+    function showCompletion() {
+      log("Callback executed: Greeting completed!");
+    }
+
+   
+    function performAction(actionName, callback) {
+      log(`Performing action: ${actionName}`);
+      setTimeout(() => {
+        log(`Action "${actionName}" done!`);
+        callback();
+      }, 1000); 
+    }
+
+    
+    function demonstrateScopes() {
+      log("=== Scope Demonstration ===");
+
+      var globalVar = "I'm a var variable (function/global scope)";
+      let blockLet = "I'm a let variable (block scope)";
+      const blockConst = "I'm a const variable (block scope)";
+
+      log("Outside block:");
+      log(globalVar);
+      log(blockLet);
+      log(blockConst);
+
+      {
+        var globalVar = "Var inside block (overwrites outer var)";
+        let blockLet = "Let inside block (new block-scoped variable)";
+        const blockConst = "Const inside block (new block-scoped variable)";
+        log("Inside block:");
+        log(globalVar);
+        log(blockLet);
+        log(blockConst);
+      }
+
+      log("After block:");
+      log(globalVar); 
+      log(blockLet);  
+      log(blockConst); 
+
+      function localScopeExample() {
+        let localVar = "I am a local variable";
+        log(localVar);
+      }
+      localScopeExample();
+     
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Callback Function Example ===");
+      greetUser("Alice", showCompletion);
+
+      log("\n=== Async Callback Example ===");
+      performAction("Download file", () => log("Async callback executed!"));
+
+      log("\n=== Scope Example ===");
+      demonstrateScopes();
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function Expressions & Arrow Functions</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 500px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 350px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Function Expressions & Arrow Functions</h1>
+    <p>Click the button to see examples of function expressions and arrow functions.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    // Helper for displaying text
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Traditional Function Declaration ===");
+      function add(a, b) {
+        return a + b;
+      }
+      log(`add(5, 3) = ${add(5, 3)}`);
+
+      log("\n=== Converted to Function Expression ===");
+      const subtract = function(a, b) {
+        return a - b;
+      };
+      log(`subtract(10, 4) = ${subtract(10, 4)}`);
+
+      log("\n=== Using Arrow Function ===");
+      const multiply = (a, b) => a * b;
+      log(`multiply(6, 7) = ${multiply(6, 7)}`);
+
+      log("\n=== Arrow Function with Single Parameter ===");
+      const square = n => n * n;
+      log(`square(5) = ${square(5)}`);
+
+      log("\n=== Arrow Function with No Parameters ===");
+      const greet = () => "Hello from an arrow function!";
+      log(greet());
+
+      log("\n=== Multi-line Arrow Function ===");
+      const divide = (a, b) => {
+        if (b === 0) {
+          return "Cannot divide by zero";
+        }
+        return a / b;
+      };
+      log(`divide(20, 4) = ${divide(20, 4)}`);
+
+      log("\n=== Difference in 'this' Behavior ===");
+      const personTraditional = {
+        name: "Alice",
+        traditionalFunction: function () {
+          log(`Traditional Function: Hello, I'm ${this.name}`);
+        },
+        arrowFunction: () => {
+          
+          log(`Arrow Function: Hello, I'm ${this.name}`);
+        }
+      };
+      personTraditional.traditionalFunction();
+      personTraditional.arrowFunction();
+
+      log("\n=== Simple Arrow Function Use Cases ===");
+      const numbers = [1, 2, 3, 4, 5];
+      const doubled = numbers.map(n => n * 2);
+      const evens = numbers.filter(n => n % 2 === 0);
+      log(`Original numbers: ${numbers}`);
+      log(`Doubled using arrow: ${doubled}`);
+      log(`Even numbers using arrow: ${evens}`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
