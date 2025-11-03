@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Array Creation & Operations</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 600px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      text-align: left;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Array Creation & Basic Operations</h1>
+    <p>Click the button to see array examples and operations.</p>
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById("output");
+      const p = document.createElement("p");
+      p.textContent = message;
+      output.appendChild(p);
+      console.log(message);
+    }
+
+    function runDemo() {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      console.clear();
+
+      log("=== Array Creation ===");
+      const numbers = [10, 20, 30, 40, 50];
+      const fruits = ["Apple", "Banana", "Cherry"];
+      log(`Numbers array: [${numbers}]`);
+      log(`Fruits array: [${fruits}]`);
+
+      log("\n=== Access & Modify Elements ===");
+      log(`numbers[2] = ${numbers[2]}`);
+      numbers[2] = 35;
+      log(`numbers[2] after modification = ${numbers[2]}`);
+      log(`fruits[0] = ${fruits[0]}`);
+      fruits[0] = "Apricot";
+      log(`fruits[0] after modification = ${fruits[0]}`);
+
+      log("\n=== Array Length ===");
+      log(`numbers.length = ${numbers.length}`);
+      log(`fruits.length = ${fruits.length}`);
+
+      log("\n=== Adding/Removing Elements ===");
+      numbers.push(60);
+      log(`After numbers.push(60): [${numbers}]`);
+      numbers.pop();
+      log(`After numbers.pop(): [${numbers}]`);
+      fruits.unshift("Mango");
+      log(`After fruits.unshift("Mango"): [${fruits}]`);
+      fruits.shift();
+      log(`After fruits.shift(): [${fruits}]`);
+
+      log("\n✅ Demo complete!");
+    }
+
+    document.getElementById("runDemo").addEventListener("click", runDemo);
+  </script>
+</body>
+</html>
